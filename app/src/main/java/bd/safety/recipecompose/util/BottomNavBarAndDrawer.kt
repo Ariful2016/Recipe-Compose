@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
-public class BottomNavBarAndDrawer{
+class BottomNavBarAndDrawer{
     companion object{
         @Composable
         fun BottomNavigationBar(navController: NavController) {
