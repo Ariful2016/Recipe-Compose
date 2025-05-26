@@ -53,7 +53,7 @@ fun MainScreen(navController: NavController, viewModel: MainViewModel = hiltView
                     mapOf(
                         "apiKey" to API_KEY,
                         "query" to "chicken",
-                        "number" to "10"
+                        "number" to "50"
                     )
                 )
             }) {
