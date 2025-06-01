@@ -1,9 +1,12 @@
 package bd.safety.recipecompose.di
+import android.content.Context
+import bd.safety.recipecompose.data.manager.BrotherPrinterManager
 import bd.safety.recipecompose.data.network.FoodRecipesApi
 import bd.safety.recipecompose.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -46,6 +49,12 @@ object NetworkModule {
     @Provides
     fun provideApiService(retrofit: Retrofit): FoodRecipesApi {
         return retrofit.create(FoodRecipesApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBrotherPrinterManager(@ApplicationContext context: Context): BrotherPrinterManager {
+        return BrotherPrinterManager(context)
     }
 
 }
