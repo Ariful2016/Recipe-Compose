@@ -65,7 +65,7 @@ class BottomNavBarAndDrawer{
 
         @Composable
         fun DrawerContent(navController: NavController, currentRoute: String?, onItemClick: () -> Unit) {
-            val items = listOf(Screen.Main, Screen.Favorites, Screen.FoodJoke, Screen.About)
+            val items = listOf(Screen.Main, Screen.Favorites, Screen.FoodJoke, Screen.Printer)
 
             ModalDrawerSheet {
                 Spacer(Modifier.height(12.dp))
@@ -76,7 +76,6 @@ class BottomNavBarAndDrawer{
                                 Screen.Main -> Icon(Icons.Default.Home, contentDescription = null)
                                 Screen.Favorites -> Icon(Icons.Default.Favorite, contentDescription = null)
                                 Screen.FoodJoke -> Icon(Icons.Default.Info, contentDescription = null)
-                                Screen.About -> Icon(Icons.Default.Info, contentDescription = null)
                                 Screen.Printer -> Icon(Icons.Default.DateRange, contentDescription = null)
                             }
                         },

@@ -25,7 +25,7 @@ class BrotherPrinterManager @Inject constructor(
         val settings = printer.getPrinterInfo().apply {
             printerModel = PrinterInfo.Model.QL_820NWB // Replace with your printer model
             port = PrinterInfo.Port.NET // Use NET for Wi-Fi, BLUETOOTH for Bluetooth, or USB
-            ipAddress = "192.168.1.100" // Replace with your printer's IP address
+            ipAddress = "192.168.10.1_1" // Replace with your printer's IP address
             workPath = context.getExternalFilesDir(null)?.absolutePath ?: ""
             printMode = PrinterInfo.PrintMode.FIT_TO_PAGE
             paperSize = PrinterInfo.PaperSize.A4

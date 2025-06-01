@@ -84,7 +84,6 @@ class MainActivity : ComponentActivity() {
                     composable(Screen.Main.route) { MainScreen(navController) }
                     composable(Screen.Favorites.route) { FavoritesScreen(navController) }
                     composable(Screen.FoodJoke.route) { FoodJokeScreen(navController) }
-                    composable(Screen.About.route) { FoodJokeScreen(navController) }
                     composable(Screen.Printer.route) { PrinterScreen(navController)}
 
                 }

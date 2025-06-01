@@ -2,6 +2,7 @@ package bd.safety.recipecompose.ui.screens.printerScreen
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import bd.safety.recipecompose.models.PrintState
+import bd.safety.recipecompose.util.copyPdfFromAssets
 import bd.safety.recipecompose.viewmodels.printer.PrinterViewModel
 import kotlinx.coroutines.launch
 
@@ -91,8 +93,14 @@ fun PrinterScreen(navController: NavController, viewModel: PrinterViewModel = hi
 
         Button(
             onClick = {
+                val pdfFile = copyPdfFromAssets(context)
                 val pdfPath = "${context.getExternalFilesDir(null)}/sample_document.pdf"
-                viewModel.printPDF(pdfPath)
+                //viewModel.printPDF(pdfFile.absolutePath)
+                if (pdfFile.exists()) {
+                    viewModel.printPDF(pdfFile.absolutePath)
+                } else {
+                    Toast.makeText(context, "Failed to copy PDF", Toast.LENGTH_SHORT).show()
+                }
             },
             enabled = printState !is PrintState.Loading
         ) {
