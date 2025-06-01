@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+    implementation(files("libs/brother-print-sdk.aar"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

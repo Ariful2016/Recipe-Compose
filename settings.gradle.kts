@@ -16,6 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs("app/libs") // use the relative path to `libs` inside the `app` module
+        }
     }
 }
 
