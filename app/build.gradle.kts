@@ -119,4 +119,8 @@ dependencies {
 
     // Jsoup
     implementation(libs.jsoup)
+
+    //pdf to image
+    //implementation("com.tom-roush:pdfbox-android:2.0.29.0")
+    implementation ("com.tom-roush:pdfbox-android:2.0.27.0")
 }

@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import bd.safety.recipecompose.ui.screens.favoriteScreen.FavoritesScreen
 import bd.safety.recipecompose.ui.screens.jokeScreen.FoodJokeScreen
 import bd.safety.recipecompose.ui.screens.mainScreen.MainScreen
+import bd.safety.recipecompose.ui.screens.printerScreen.PrinterScreen
 import bd.safety.recipecompose.ui.theme.FoodyTheme
 import bd.safety.recipecompose.util.BottomNavBarAndDrawer.Companion.BottomNavigationBar
 import bd.safety.recipecompose.util.BottomNavBarAndDrawer.Companion.DrawerContent
@@ -84,6 +85,8 @@ class MainActivity : ComponentActivity() {
                     composable(Screen.Favorites.route) { FavoritesScreen(navController) }
                     composable(Screen.FoodJoke.route) { FoodJokeScreen(navController) }
                     composable(Screen.About.route) { FoodJokeScreen(navController) }
+                    composable(Screen.Printer.route) { PrinterScreen(navController)}
+
                 }
             }
         }

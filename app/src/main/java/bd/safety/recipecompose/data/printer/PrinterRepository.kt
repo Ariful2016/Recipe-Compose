@@ -1,4 +1,4 @@
-package bd.safety.recipecompose.data
+package bd.safety.recipecompose.data.printer
 
 import bd.safety.recipecompose.data.manager.BrotherPrinterManager
 import bd.safety.recipecompose.models.PrintState
@@ -46,5 +46,9 @@ class PrinterRepository @Inject constructor(
             }
             else -> PrintState.Error(result.exceptionOrNull()?.message ?: "Unknown error")
         }
+    }
+
+    fun setPrintState(state: PrintState) {
+        _printState.value = state
     }
 }

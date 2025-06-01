@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -76,6 +77,7 @@ class BottomNavBarAndDrawer{
                                 Screen.Favorites -> Icon(Icons.Default.Favorite, contentDescription = null)
                                 Screen.FoodJoke -> Icon(Icons.Default.Info, contentDescription = null)
                                 Screen.About -> Icon(Icons.Default.Info, contentDescription = null)
+                                Screen.Printer -> Icon(Icons.Default.DateRange, contentDescription = null)
                             }
                         },
                         label = { Text(screen.title) },

@@ -1,14 +1,19 @@
 package bd.safety.recipecompose.data.manager
 import android.content.Context
+import android.graphics.Bitmap
 import com.brother.ptouch.sdk.Printer
 import com.brother.ptouch.sdk.PrinterInfo
 import com.brother.ptouch.sdk.PrinterStatus
+import com.tom_roush.pdfbox.pdmodel.PDDocument
+import com.tom_roush.pdfbox.rendering.PDFRenderer
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 class BrotherPrinterManager @Inject constructor(
@@ -49,12 +54,32 @@ class BrotherPrinterManager @Inject constructor(
 
     suspend fun printPDF(pdfPath: String, page: Int = 1): Result<PrinterStatus> = withContext(Dispatchers.IO) {
         try {
-            val file = File(pdfPath)
-            if (!file.exists()) {
+            val pdfFile = File(pdfPath)
+            if (!pdfFile.exists()) {
                 return@withContext Result.failure(Exception("PDF file not found"))
             }
+
+            // Convert PDF page to bitmap
+            val document = PDDocument.load(pdfFile)
+            if (page < 1 || page > document.numberOfPages) {
+                document.close()
+                return@withContext Result.failure(Exception("Invalid page number"))
+            }
+
+            val pdfRenderer = PDFRenderer(document)
+            val bitmap = pdfRenderer.renderImageWithDPI(page - 1, 300f) // 300 DPI for high quality
+            document.close()
+
+            // Save bitmap to a temporary file
+            val tempImageFile = File(context.getExternalFilesDir(null), "temp_print_image.png")
+            FileOutputStream(tempImageFile).use { out ->
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            }
+
+            // Print the bitmap
             if (printer.startCommunication()) {
-                val result = printer.printPDFWithURL(file.toURI().toString(), page)
+                val result = printer.printFile(tempImageFile.absolutePath)
+                tempImageFile.delete() // Clean up temporary file
                 Result.success(result)
             } else {
                 Result.failure(Exception("Failed to connect to printer"))
